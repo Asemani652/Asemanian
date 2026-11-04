@@ -17,18 +17,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build with Android Builder
+    - name: Build Project
       run: |
-        if [ -f "gradlew" ]; then
-          chmod +x gradlew
-          ./gradlew assembleDebug
-        else
-          echo "No gradlew found, searching for build files..."
-          find . -name "build.gradle"
-        fi
-
-    - name: Upload APK
+        echo "Searching for build files..."
+        find . -name "build.gradle"
+        
+    - name: Upload Workspace Files
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: project-files
+        path: .
